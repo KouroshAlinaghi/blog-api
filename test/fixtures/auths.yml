@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  code: MyString
-  users: one
+  code: MyString1
+  author: one
 
 two:
-  code: MyString
-  users: two
+  code: MyString2
+  author: two

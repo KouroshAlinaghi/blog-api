@@ -1,7 +1,6 @@
 class AuthorsController < ApplicationController
 
-  before_action :ensure_signed_in, only: [:destroy, :dashboard, :update]
-  before_action :ensure_not_signed_in, only: [:create]
+  before_action :ensure_signed_in, only: [:destroy, :dashboard, :update, :create]
 
   def create
     @author = Author.new(author_params)
@@ -44,10 +43,6 @@ class AuthorsController < ApplicationController
   end
 
   def ensure_signed_in
-    render json: {successfull: false, errors: ["Unauthorizated"]} unless @user_signed_in
-  end
-
-  def ensure_not_signed_in
-    render json: {successfull: false, errors: ["you should not be signed in"]} if @user_signed_in
+    render json: {successfull: false, errors: ["Unauthorized"]} unless @user_signed_in
   end
 end

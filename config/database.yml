@@ -58,7 +58,7 @@ development:
 test:
   <<: *default
   database: blog_test
-  port: 5432
+#  port: 5432
   host: localhost
   password: blog
   username: blog

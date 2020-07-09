@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
   def create
     @author = Author.find_by_email(params[:email])
-    if @author.authenticate(params[:password])
+    if @author && @author.authenticate(params[:password])
       code = SecureRandom.urlsafe_base64(64)
       @auth = @author.auths.new(code: code)
       if @auth.save
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
         render json: {successfull: false, errors: @auth.errors}
       end
     else
-        render json: {successfull: false, errors: "Invalid Credentials"}
+        render json: {successfull: false, errors: ["Invalid Credentials"]}
     end
   end
 
@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
   end
 
   def ensure_signed_in
-    render json: {successfull: false, errors: ["Unauthorizated"]} unless @user_signed_in
+    render json: {successfull: false, errors: ["Unauthorized"]} unless @user_signed_in
   end
 
   def ensure_not_signed_in

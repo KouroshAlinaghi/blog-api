@@ -46,6 +46,6 @@ class PostsController < ApplicationController
   end
 
   def ensure_signed_in
-    render json: {successfull: false, errors: ["Unauthorizated"]} unless @user_signed_in
+    render json: {successfull: false, errors: ["Unauthorized"]} unless @user_signed_in
   end
 end
