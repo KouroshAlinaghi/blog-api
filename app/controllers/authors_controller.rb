@@ -13,7 +13,7 @@ class AuthorsController < ApplicationController
   end
 
   def dashboard
-    render json: @current_user
+    render json: {successfull: true, user: @current_user}
   end
 
   def update
