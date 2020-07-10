@@ -3,12 +3,13 @@ class PostsController < ApplicationController
   before_action :ensure_signed_in, only: [:create, :destroy, :update]
 
   def index
-    @posts = Post.all
+    @posts = Post.filter(params.slice(:q, :author, :order_by))
     render json: {successfull: true, posts: @posts}
   end
 
   def show
     @post = Post.find(params[:id])
+    @post.inc_visit_count()
     render json: {successfull: true, post: @post}
   end
 
