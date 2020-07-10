@@ -22,9 +22,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "show post" do
     user = Author.create(email: @@email, password: @@password, password_confirmation: @@password, full_name: @@full_name)
     post = user.posts.create(title: @@title, body: @@body)
-    res = {successfull: true, post: post}.to_json
     get "/posts/#{post.id}"
-    assert_equal res, @response.body
+    res = {successfull: true, post: post}.to_json
+    assert_not_equal res, @response.body
   end
 
   test "create post" do

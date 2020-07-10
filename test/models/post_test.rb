@@ -41,4 +41,13 @@ class PostTest < ActiveSupport::TestCase
       invalid_post.save
     end
   end
+
+  test "visit_count default value" do
+    user = Author.create(email: @@email, password: @@password, password_confirmation: @@password, full_name: @@full_name)
+    valid_post =  Post.create(title: @@title, body: @@body, author_id: user.id)
+    assert valid_post.visit_count == 0
+    4.times {valid_post.inc_visit_count}
+    assert valid_post.visit_count == 4
+  end
+
 end
